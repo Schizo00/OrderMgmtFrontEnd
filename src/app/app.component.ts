@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular_test';
+
+  showing : boolean = false;
+
+  hideComponent() {
+    if (this.showing == true) {
+      this.showing = false;
+    } else {
+      this.showing = true;
+    }
+  }
+
+
 }
