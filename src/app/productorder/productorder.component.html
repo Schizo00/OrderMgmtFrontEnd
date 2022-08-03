@@ -1,0 +1,7 @@
+<h1>{{ title }}</h1>
+
+<ol>
+    <li *ngFor="let productOrder of productOrders">
+        Order ID: {{ productOrder.OrderID}} Price: {{ productOrder.SubTotal }}
+    </li>
+</ol>

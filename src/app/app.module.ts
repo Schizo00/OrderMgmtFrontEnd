@@ -6,12 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
+import { CustomerComponent } from './customer/customer.component';
+import { ProductOrderComponent } from './productorder/productorder.component';
+import { OrderComponent } from './order/order.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    CustomerComponent,
+    ProductOrderComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

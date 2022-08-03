@@ -1,0 +1,84 @@
+<ul class="navbar nav container">
+    <h1 class="ms-2">{{ title }}</h1>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-dark float-right" 
+    data-bs-toggle="modal" 
+    data-bs-target="#staticBackdrop2" (click)="onCreate()">
+        Create Order
+      </button>
+    
+    </ul>
+      
+    
+    
+    
+    <!-- <ol>
+        <li *ngFor="let product of products">
+            {{ product.Name }}
+        </li>
+    </ol> -->
+    
+    <table class="table table-striped container">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Cust ID</th>
+                <th>Total</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{order.OrderID}}</td>
+                <td>{{order.CustID}}</td>
+                <td>{{order.Total}}</td>
+                <td>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"  class="btn btn-light me-1" (click)="onEdit(order.OrderID)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-light me-1" (click)="onDelete(order.OrderID)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ modalTitle }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="product-form" >
+                    <div class="mb-3">
+                      <label for="cust_id" class="col-form-label">Order ID</label>
+                      <input type="text" class="form-control" id="cust_id" [defaultValue]= orderIndex readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customer_name" class="col-form-label">Customer ID</label>
+                        <select name="cust_id" #cust_id >
+                            <option *ngFor="let customer of customers" [value]="customer.CustID">({{ customer.CustID}})  {{ customer.Name }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Total</label>
+                        <input type="text" class="form-control" #total readonly [defaultValue]="0">
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" (click)="submitButton()"  data-bs-dismiss="modal" >Submit</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        

@@ -8,14 +8,26 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class AppComponent {
   title = 'angular_test';
 
-  showing : boolean = false;
+  showingProducts : boolean = false;
+  showingCustomers : boolean = false;
+  showingProductOrders : boolean = false;
+  showingOrders : boolean = false;
 
-  hideComponent() {
-    if (this.showing == true) {
-      this.showing = false;
+  hideComponent(showing:boolean) {
+
+    this.showingProducts = false;
+    this.showingCustomers = false;
+    this.showingProductOrders = false;
+    this.showingOrders = false;
+
+    if (showing == true) {
+      showing = false;
     } else {
-      this.showing = true;
+      showing = true;
     }
+
+    console.log(showing)
+    return showing
   }
 
 

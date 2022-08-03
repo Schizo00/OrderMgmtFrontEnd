@@ -1,0 +1,82 @@
+<ul class="navbar nav container">
+    <h1 class="ms-2">{{ title }}</h1>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-dark float-right" 
+    data-bs-toggle="modal" 
+    data-bs-target="#staticBackdrop1" (click)="onCreate()">
+        Create Customer
+      </button>
+    
+    </ul>
+      
+    
+    
+    
+    <!-- <ol>
+        <li *ngFor="let product of products">
+            {{ product.Name }}
+        </li>
+    </ol> -->
+    
+    <table class="table table-striped container">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers">
+                <td>{{customer.CustID}}</td>
+                <td>{{customer.Name}}</td>
+                <td>{{customer.Email}}</td>
+                <td>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"  class="btn btn-light me-1" (click)="onEdit(customer.CustID)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-light me-1" (click)="onDelete(customer.CustID)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ modalTitle }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="product-form" >
+                    <div class="mb-3">
+                      <label for="cust_id" class="col-form-label">Customer ID</label>
+                      <input type="text" class="form-control" id="cust_id" [defaultValue]= custIndex readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customer_name" class="col-form-label">Customer Name</label>
+                        <input type="text" class="form-control" #customer_name >
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" #email>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" (click)="submitButton()"  data-bs-dismiss="modal" >Submit</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        
