@@ -1,7 +1,98 @@
-<h1>{{ title }}</h1>
-
-<ol>
-    <li *ngFor="let productOrder of productOrders">
-        Order ID: {{ productOrder.OrderID}} Price: {{ productOrder.SubTotal }}
-    </li>
-</ol>
+<ul class="navbar nav container">
+    <h1 class="ms-2">{{ title }}</h1>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-dark float-right" 
+    data-bs-toggle="modal" 
+    data-bs-target="#staticBackdrop3" (click)="onCreate()">
+        Create Product Order
+      </button>
+    
+    </ul>
+      
+    
+    
+    
+    <!-- <ol>
+        <li *ngFor="let product of products">
+            {{ product.Name }}
+        </li>
+    </ol> -->
+    
+    <table class="table table-striped container">
+        <thead>
+            <tr>
+                <th>Product Order ID</th>
+                <th>Order ID</th>
+                <th>Product ID</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prodOrder of productOrders">
+                <td>{{prodOrder.ProductOrderID}}</td>
+                <td>{{prodOrder.OrderID}}</td>
+                <td>{{prodOrder.ProductID}}</td>
+                <td>{{prodOrder.Quantity}}</td>
+                <td>{{prodOrder.SubTotal}}</td>
+                <td>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"  class="btn btn-light me-1" (click)="onEdit(prodOrder.ProductOrderID)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-light me-1" (click)="onDelete(prodOrder.ProductOrderID)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ modalTitle }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="product-form" >
+                    <div class="mb-3">
+                      <label for="prodorder_id" class="col-form-label">Product Order ID</label>
+                      <input type="text" class="form-control" id="prodorder_id" [defaultValue]= prodOrderIndex readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="order_id" class="col-form-label">Order Details </label>
+                        <select name="order_id" #order_id >
+                            <option *ngFor="let order of orders" [value]="order.OrderID">(OrderID - {{ order.OrderID}}) (CustomerID -{{ order.CustID }})</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product_id" class="col-form-label">Product ID</label>
+                        <select name="product_id" #product_id >
+                            <option *ngFor="let product of products" [value]="product.ProductID">({{ product.ProductID}}) {{ product.Name }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="col-form-label">Quantity</label>
+                        <input type="text" class="form-control" #quantity [defaultValue]="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Total</label>
+                        <input type="text" class="form-control" #total readonly [defaultValue]="0">
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" (click)="submitButton()"  data-bs-dismiss="modal" >Submit</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        

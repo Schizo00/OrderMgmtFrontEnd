@@ -15,6 +15,7 @@ export class CustomerService  {
   private httpURLGet = `http://localhost:4200/api/customers/retrieve`
   private httpURLPost = `http://localhost:3000/api/customers/create`
   private httpURLPut = `http://localhost:3000/api/customers/update`
+  private httpURLDelete = `http://localhost:3000/api/customers/delete`
   
   private headers = new HttpHeaders()
   .set('content-type', 'application/json')
@@ -40,6 +41,10 @@ export class CustomerService  {
 
   updateCustomer(product: ICustomer, index:number) {
     return this.http.put<ICustomer>(this.httpURLPut + "/" + index, product).subscribe()
+  }
+
+  deleteCustomer(index:number) {
+    return this.http.delete<ICustomer>(this.httpURLDelete + "/" + index).subscribe()
   }
 
 }

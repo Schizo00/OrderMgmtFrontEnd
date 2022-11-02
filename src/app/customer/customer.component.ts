@@ -66,6 +66,7 @@ afterEdit(originalIndex: number) {
 
 onDelete(originalIndex: number) {
   console.log("Deleted Product by Product ID: ", originalIndex)
+  this.service.deleteCustomer(originalIndex)
 }
 
 onCreate() {
